@@ -61,3 +61,40 @@ hexagonal_user_auth/
 git clone https://github.com/vijayagopalsb/hexagonal_user_auth.git
 cd hexagonal_user_auth
 ```
+
+2. Create a Virtual Environment
+
+```bash
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+```
+
+3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+4. Run the Application
+```bash
+uvicorn app.main:app --reload
+```
+
+### Testing
+Coming soon... (You can integrate pytest or unittest)
+
+### Future Enhancements
+
+- JWT-based token authentication
+
+- Role-based access control
+
+- OAuth2 or social login
+
+- Docker support
+
+- CI/CD pipeline
+
+### License
+
+This project is licensed under the MIT [License](/LICENSE). See the LICENSE file for details.
