@@ -1,4 +1,4 @@
-# app/schemas/user_schema.py (or place in main.py for now)
+# app/schemas/user_schema.py
 
 from pydantic import BaseModel, EmailStr
 
