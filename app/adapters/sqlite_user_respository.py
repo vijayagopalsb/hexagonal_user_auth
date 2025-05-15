@@ -17,7 +17,7 @@ class SQLiteUserRepository(UserRepository):
         cusor = conn.cursor()
         cusor.execute(
             """
-                CREATE TABLE IF NOT EXITS users (
+                CREATE TABLE IF NOT EXISTS users (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     username TEXT UNIQUE,
                     password_hash TEXT,
@@ -31,7 +31,7 @@ class SQLiteUserRepository(UserRepository):
     def get_user_by_username(self, username: str) -> Optional[User]:
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
-        cursor.execute("SELECT id, username, password_hash, email from users WHERE username=?", (username))
+        cursor.execute("SELECT id, username, password_hash, email from users WHERE username=?", (username,))
         row = cursor.fetchone()
         conn.close()
 
@@ -44,11 +44,17 @@ class SQLiteUserRepository(UserRepository):
             raise UserAlreadyExistsException("User already exists")
 
         conn = sqlite3.connect(self.db_path)
-        cursor = sqlite3.connect(self.db_path)
-        cursor.execute("INSERT INTO users (username, password_hash, email) VALUES (?, ?, ?)",
-                       (user.username, user.password_hash, user.email))
+        cursor = conn.cursor()  # ✅ get a cursor from the connection
+
+        cursor.execute(
+            "INSERT INTO users (username, password_hash, email) VALUES (?, ?, ?)",
+            (user.username, user.password_hash, user.email)
+        )
+
+        user.id = cursor.lastrowid  # ✅ This now works as expected
+
         conn.commit()
-        user.id = cursor.lastrowid
         conn.close()
+
         return user
 

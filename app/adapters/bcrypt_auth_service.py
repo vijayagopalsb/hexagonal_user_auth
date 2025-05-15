@@ -3,7 +3,7 @@
 import bcrypt
 from app.ports.auth_service import AuthService
 
-class BCryptAuthService(AuthService):
+class BcryptAuthService(AuthService):
 
     def hash_password(self, password: str) -> str:
         salt = bcrypt.gensalt()
