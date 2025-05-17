@@ -2,8 +2,8 @@
 
 from app.ports.user_repository import UserRepository
 from app.ports.auth_service import AuthService
-from app.domain.models import User
-from app.domain.exceptions import InvalidCredentialsException
+from app.core.models import User
+from app.core.exceptions import InvalidCredentialsException
 
 class UserService:
     def __init__(self, user_repo: UserRepository, auth_service: AuthService):

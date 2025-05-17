@@ -4,7 +4,7 @@
 
 from abc import abstractmethod, ABC
 from typing import Optional
-from app.domain.models import User
+from app.core.models import User
 
 class UserRepository(ABC):
 

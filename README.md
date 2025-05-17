@@ -81,7 +81,7 @@ uvicorn app.main:app --reload
 ```
 
 ### Testing
-Coming soon... (You can integrate pytest or unittest)
+Coming soon... 
 
 ### Future Enhancements
 
